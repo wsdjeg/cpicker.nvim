@@ -6,7 +6,6 @@
 ## Install
 
 ```
-Plug 'https://spacevim.org/git/repos/SpaceVim/'
 Plug 'wsdjeg/cpicker.nvim'
 
 ```

@@ -20,6 +20,7 @@ local util = require('cpicker.util')
 local enabled_formats = {}
 local increase_keys = {}
 local reduce_keys = {}
+local color_code_regex = {}
 
 local function update_buf_text()
   local rst = {}
@@ -35,12 +36,12 @@ local function update_buf_text()
     end
   end
   table.insert(rst, '')
-  local color_code_regex = {}
+  color_code_regex = {}
   for _, format in ipairs(enabled_formats) do
     local ok, f = pcall(require, 'cpicker.formats.' .. format)
     if ok then
       table.insert(rst, f.color_code() .. string.rep(' ', 20))
-      table.insert(color_code_regex, {#f.color_code(), f.color_code_regex})
+      table.insert(color_code_regex, { #f.color_code(), f.color_code_regex })
     end
   end
   util.update_color_code_syntax(color_code_regex)
@@ -85,14 +86,10 @@ end
 -- https://zenn.dev/kawarimidoll/articles/a8ac50a17477bd
 
 local function copy_color()
-  local from, to = vim
-    .regex(
-      [[#[0123456789ABCDEF]\+\|rgb(\d\+,\s\d\+,\s\d\+)\|hsl(\d\+,\s\d\+%,\s\d\+%)\|hsv(\d\+,\s\d\+%,\s\d\+%)\|cmyk(\d\+%,\s\d\+%,\s\d\+%,\s\d\+%)\|hwb(\d\+,\s\d\+%,\s\d\+%)]]
-    )
-    :match_str(vim.fn.getline('.'))
+  local from, to = vim.regex(table.concat(vim.tbl_map(function(t) return t[2] end, color_code_regex), '\\|')):match_str(vim.fn.getline('.'))
   if from then
-    vim.fn.setreg('+', string.sub(vim.fn.getline('.'), from, to + 1))
-    notify.notify('copyed:' .. string.sub(vim.fn.getline('.'), from, to + 1))
+    vim.fn.setreg('+', string.sub(vim.fn.getline('.'), from, to))
+    notify.notify('copied:' .. string.sub(vim.fn.getline('.'), from, to))
   end
 end
 
@@ -125,14 +122,20 @@ local function reduce()
 end
 
 M.picker = function(formats)
-  enabled_formats = formats
+  if #formats == 0 then
+    enabled_formats = { 'rgb', 'hsl' }
+  else
+    enabled_formats = formats
+  end
   log.info(vim.inspect(enabled_formats))
   if not bufnr or not vim.api.nvim_win_is_valid(bufnr) then
     bufnr = vim.api.nvim_create_buf(false, false)
     vim.api.nvim_set_option_value('buftype', 'nofile', {
       buf = bufnr,
     })
-    vim.api.nvim_set_option_value('filetype', 'spacevim_cpicker', {
+    -- use set syntax instead of filetype
+    -- if using filetype, when open cpicker first time the SpaceVimPickerCode syntax is cleared
+    vim.api.nvim_set_option_value('syntax', 'spacevim_cpicker', {
       buf = bufnr,
     })
     vim.api.nvim_set_option_value('bufhidden', 'wipe', {
@@ -179,6 +182,10 @@ M.picker = function(formats)
     buf = bufnr,
   })
   update_buf_text()
+end
+
+M.set_default_color = function(hex)
+  color_hi = hex
 end
 
 return M

@@ -27,15 +27,15 @@ function M.buf_text()
   local b_bar = util.generate_bar(blue, '+')
   table.insert(
     rst,
-    'RGB:  R:    ' .. string.format('%4s', math.floor(red * 255 + 0.5)) .. ' ' .. r_bar
+    'RGB:    R:    ' .. string.format('%4s', math.floor(red * 255 + 0.5)) .. ' ' .. r_bar
   )
   table.insert(
     rst,
-    '      G:    ' .. string.format('%4s', math.floor(green * 255 + 0.5)) .. ' ' .. g_bar
+    '        G:    ' .. string.format('%4s', math.floor(green * 255 + 0.5)) .. ' ' .. g_bar
   )
   table.insert(
     rst,
-    '      B:    ' .. string.format('%4s', math.floor(blue * 255 + 0.5)) .. ' ' .. b_bar
+    '        B:    ' .. string.format('%4s', math.floor(blue * 255 + 0.5)) .. ' ' .. b_bar
   )
   return rst
 end
@@ -44,48 +44,30 @@ function M.color_code()
   return '   =========' .. '  ' .. color.rgb2hex(red, green, blue)
 end
 
-local function increase(c)
-  if c <= 1 - 1 / 255 then
-    c = c + 1 / 255
-  elseif c < 1 then
-    c = 1
-  end
-  return c
-end
-
-local function reduce(c)
-  if c >= 1 / 255 then
-    c = c - 1 / 255
-  elseif c > 0 then
-    c = 0
-  end
-  return c
-end
-
 local function increase_rgb_red()
-  red = increase(red)
+  red = util.increase(red, 255)
   return on_change_argv()
 end
 local function reduce_rgb_red()
-  red = reduce(red)
+  red = util.reduce(red, 255)
   return on_change_argv()
 end
 local function increase_rgb_green()
-  green = increase(green)
+  green = util.increase(green, 255)
   return on_change_argv()
 end
 local function reduce_rgb_green()
-  green = reduce(green)
+  green = util.reduce(green, 255)
   return on_change_argv()
 end
 
 local function increase_rgb_blue()
-  blue = increase(blue)
+  blue = util.increase(blue, 255)
   return on_change_argv()
 end
 
 local function reduce_rgb_blue()
-  blue = reduce(blue)
+  blue = util.reduce(blue, 255)
   return on_change_argv()
 end
 function M.increase_reduce_functions()
@@ -98,6 +80,7 @@ end
 
 function M.on_change(f, code)
   if f == 'rgb' then
+    red, green, blue = unpack(code)
     return
   end
   red, green, blue = color[f .. '2rgb'](unpack(code))
