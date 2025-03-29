@@ -20,7 +20,7 @@ local extend = function(t1, t2) -- {{{
   end
 end
 
-local easing = require('easing')
+local easing = require('cpicker.easing')
 local fps = 120
 local total_time = 300
 local step = 0
