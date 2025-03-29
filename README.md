@@ -2,25 +2,30 @@
 
 > _cpicker.nvim_ is a Color Converter for neovim.
 
-[![](https://spacevim.org/img/build-with-SpaceVim.svg)](https://spacevim.org)
 [![GPLv3 License](https://img.spacevim.org/license-GPLv3-blue.svg)](LICENSE)
 
 ![cpicker](./img/cpicker.png)
 
 <!-- vim-markdown-toc GFM -->
 
-- [Install](#install)
-- [Commands](#commands)
-- [Feedback](#feedback)
+* [Install](#install)
+* [Commands](#commands)
+* [Feedback](#feedback)
 
 <!-- vim-markdown-toc -->
 ## Install
 
-Using vim-plug
+Use your preferred Neovim plugin manager to install cpicker.nvim.
 
+with [nvim-plug](https://github.com/wsdjeg/nvim-plug)
+
+```lua
+require('plug').add({
+    { 'wsdjeg/cpicker.nvim' }
+})
 ```
-Plug 'wsdjeg/cpicker.nvim'
-```
+
+Then use `:PlugInstall cpicker.nvim` to install this plugin.
 
 ## Commands
 
@@ -32,6 +37,4 @@ Plug 'wsdjeg/cpicker.nvim'
 
 ## Feedback
 
-The development of this plugin is in [`SpaceVim/bundle/cpicker.nvim`](https://github.com/SpaceVim/SpaceVim/tree/master/bundle/cpicker.nvim) directory.
-
-If you encounter any bugs or have suggestions, please file an issue in the [issue tracker](https://github.com/SpaceVim/SpaceVim/issues)
+If you encounter any bugs or have suggestions, please file an issue in the [issue tracker](https://github.com/wsdjeg/cpicker.nvim/issues)
