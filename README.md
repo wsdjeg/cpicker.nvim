@@ -8,9 +8,9 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [Install](#install)
-* [Commands](#commands)
-* [Feedback](#feedback)
+- [Install](#install)
+- [Commands](#commands)
+- [Feedback](#feedback)
 
 <!-- vim-markdown-toc -->
 ## Install
@@ -20,8 +20,11 @@ Use your preferred Neovim plugin manager to install cpicker.nvim.
 with [nvim-plug](https://github.com/wsdjeg/nvim-plug)
 
 ```lua
-require('plug').add({
-    { 'wsdjeg/cpicker.nvim' }
+require("plug").add({
+	{ "wsdjeg/cpicker.nvim", depends = {
+		{ "wsdjeg/logger.nvim" },
+		{ "wsdjeg/notify.nvim" },
+	} },
 })
 ```
 
