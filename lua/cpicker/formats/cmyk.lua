@@ -7,7 +7,7 @@
 --=============================================================================
 local M = {}
 
-local color = require('spacevim.api.color')
+local color = require('cpicker.color')
 local util = require('cpicker.util')
 
 local cyan = 0
