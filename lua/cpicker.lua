@@ -12,9 +12,8 @@ local winid
 local bufnr
 local color_hi = '#000000'
 
-local hi = require('spacevim.api.vim.highlight')
-local notify = require('spacevim.api.notify')
-local log = require('spacevim.logger').derive('cpicker')
+local notify = require('notify')
+local log = require('logger').derive('cpicker')
 local util = require('cpicker.util')
 
 local enabled_formats = {}
@@ -47,27 +46,27 @@ local function update_buf_text()
     end
   end
   util.update_color_code_syntax(color_code_regex)
-  local normal_bg = hi.group2dict('Normal').guibg
-  local normal_fg = hi.group2dict('Normal').guifg
+  local normal_bg = util.group2dict('Normal').guibg
+  local normal_fg = util.group2dict('Normal').guifg
   if
     math.abs(util.get_hsl_l(normal_bg) - util.get_hsl_l(color_hi))
     > math.abs(util.get_hsl_l(color_hi) - util.get_hsl_l(normal_fg))
   then
-    hi.hi({
+    util.hi({
       name = 'SpaceVimPickerCode',
       guifg = color_hi,
       guibg = normal_bg,
       bold = 1,
     })
   else
-    hi.hi({
+    util.hi({
       name = 'SpaceVimPickerCode',
       guifg = color_hi,
       guibg = normal_fg,
       bold = 1,
     })
   end
-  hi.hi({
+  util.hi({
     name = 'SpaceVimPickerBackground',
     guibg = color_hi,
     guifg = color_hi,
