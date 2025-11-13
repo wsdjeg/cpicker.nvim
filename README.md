@@ -30,11 +30,14 @@ Use your preferred Neovim plugin manager to install cpicker.nvim.
 with [nvim-plug](https://github.com/wsdjeg/nvim-plug)
 
 ```lua
-require("plug").add({
-	{ "wsdjeg/cpicker.nvim", depends = {
-		{ "wsdjeg/logger.nvim" },
-		{ "wsdjeg/notify.nvim" },
-	} },
+require('plug').add({
+    {
+        'wsdjeg/cpicker.nvim',
+        depends = {
+            { 'wsdjeg/logger.nvim' },
+            { 'wsdjeg/notify.nvim' },
+        },
+    },
 })
 ```
 
@@ -54,6 +57,7 @@ Then use `:PlugInstall cpicker.nvim` to install this plugin.
 | ---------------- | ----------- |
 | `h` or `<Left>`  | reduce      |
 | `l` or `<Right>` | increase    |
+| `<Enter>`        | copy        |
 
 ## Feedback
 
