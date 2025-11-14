@@ -11,10 +11,9 @@ local available_methods = { "srgb", "hsl", "hwb" }
 local available_hue_methods = { "shorter", "longer", "increasing", "decreasing" }
 local method = "srgb"
 local hue_interpolation_method = "shorter"
-local hi = require("spacevim.api.vim.highlight")
-local notify = require("spacevim.api.notify")
+local notify = require("notify")
 local util = require("cpicker.util")
-local color = require("spacevim.api.color")
+local color = require("cpicker.color")
 
 local function get_mix_method()
 	if method == "hsl" then
@@ -132,10 +131,10 @@ local function update_color_mix_buftext()
 		end
 	end
 	-- 验证结果 https://products.aspose.app/svg/zh/color-mixer
-	color_mix_color3 = color.rgb2hex(r3, g3, b3)
-	local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
-	local normal_bg = normal_hl.bg
-	local normal_fg = normal_hl.fg
+	color_mix_color3 = tonumber(string.sub(color.rgb2hex(r3, g3, b3), 2), 16)
+    local normal_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
+    local normal_bg = normal_hl.bg
+    local normal_fg = normal_hl.fg
 	if
 		math.abs(util.get_hsl_l(normal_bg) - util.get_hsl_l(color_mix_color3))
 		> math.abs(util.get_hsl_l(color_mix_color3) - util.get_hsl_l(normal_fg))
@@ -183,7 +182,7 @@ local function update_color_mix_buftext()
 	table.insert(
 		rst,
 		"    =======  "
-			.. color_mix_color3
+			.. string.format('#%06X', color_mix_color3)
 			.. "                                                                          "
 	)
 	table.insert(
@@ -310,16 +309,14 @@ end
 M.color_mix = function(hex1, hex2)
 	color_mix_color1 = hex1 or "#000000"
 	color_mix_color2 = hex2 or "#FFFFFF"
-	hi.hi({
-		name = "SpaceVimPickerMixColor1",
-		guifg = color_mix_color1,
-		bold = 1,
-	})
-	hi.hi({
-		name = "SpaceVimPickerMixColor2",
-		guifg = color_mix_color2,
-		bold = 1,
-	})
+    vim.api.nvim_set_hl(0, 'SpaceVimPickerMixColor1', {
+        fg = tonumber(string.sub(color_mix_color1, 2), 16),
+        bold = true
+    })
+    vim.api.nvim_set_hl(0, 'SpaceVimPickerMixColor2', {
+        fg  = tonumber(string.sub(color_mix_color2, 2), 16),
+        bold = true
+    })
 	if not color_mix_buf or not vim.api.nvim_win_is_valid(color_mix_buf) then
 		color_mix_buf = vim.api.nvim_create_buf(false, false)
 		vim.api.nvim_set_option_value("buftype", "nofile", {
