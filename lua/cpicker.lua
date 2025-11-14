@@ -170,6 +170,8 @@ M.picker = function(formats)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'q', '', {
             callback = function()
                 vim.api.nvim_win_close(winid, true)
+                cursor_hl_name = nil
+                cursor_hl = nil
             end,
         })
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Cr>', '', {
