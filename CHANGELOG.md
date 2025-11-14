@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/wsdjeg/cpicker.nvim/compare/v1.0.0...v1.0.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* clear cursor_hl & cursor_hl_name ([9e2a094](https://github.com/wsdjeg/cpicker.nvim/commit/9e2a0941fc88b798a87c1bdf6db323489039fb18))
+* color mix ([831edb7](https://github.com/wsdjeg/cpicker.nvim/commit/831edb74b0e9f402a31ad439d146c94d8e497e7c))
+
 ## 1.0.0 (2025-11-13)
 
 
