@@ -11,7 +11,7 @@
 
 - [Intro](#intro)
 - [Install](#install)
-- [Commands](#commands)
+- [Usage](#usage)
 - [Key binding](#key-binding)
 - [Feedback](#feedback)
 
@@ -43,13 +43,33 @@ require('plug').add({
 
 Then use `:PlugInstall cpicker.nvim` to install this plugin.
 
-## Commands
+## Usage
 
-1. `:Cpicker`: open the color converter
-2. `:CpickerCursorForeground`: open the color converter with cursor highlight
-3. `:CpickerColorMix`: open the color mixer
-4. `:CpickerCursorChangeHighlight`: change the highlight of cursor word
-5. `:CpickerClearColorPatch`: clear colorscheme patch
+1. open color palette with specific color models.
+
+```
+:Cpicker rgb hsl
+```
+
+2. open color palette with cursor highlight
+
+```
+:CpickerCursorForeground
+```
+
+3. open color mixer:
+
+```
+:CpickerColorMix #282828 #23EF12
+```
+
+4. Change the highlight of cursor position. This command will generate colorscheme patch which will be loaded when using same colorscheme.
+
+```
+:CpickerCursorChangeHighlight
+```
+
+Use `:CpickerClearColorPatch` command to clear colorscheme patch
 
 ## Key binding
 
