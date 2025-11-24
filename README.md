@@ -10,6 +10,8 @@ cpicker.nvim is a lightweight color palette plugin for Neovim that supports a wi
 such as HEX, RGB, HSL, HSV, CMYK, HWB, Lab, Linear RGB, XYZ, and more.
 Support for additional color spaces will be added in future releases.
 
+![cpicker](https://github.com/user-attachments/assets/e883747c-5b69-4e1f-9975-32da5acc0242)
+
 <!-- vim-markdown-toc GFM -->
 
 - [📦 Installation](#-installation)
