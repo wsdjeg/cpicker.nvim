@@ -1,5 +1,6 @@
 # cpicker.nvim
 
+[![Run Tests](https://github.com/wsdjeg/cpicker.nvim/actions/workflows/test.yml/badge.svg)](https://github.com/wsdjeg/cpicker.nvim/actions/workflows/test.yml)
 [![GitHub License](https://img.shields.io/github/license/wsdjeg/cpicker.nvim)](LICENSE)
 [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/wsdjeg/cpicker.nvim)](https://github.com/wsdjeg/cpicker.nvim/issues)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/wsdjeg/cpicker.nvim)](https://github.com/wsdjeg/cpicker.nvim/commits/master/)
@@ -89,3 +90,4 @@ If you encounter any bugs or have suggestions, please file an issue in the [issu
 ## 📄 License
 
 Licensed under GPL-3.0.
+

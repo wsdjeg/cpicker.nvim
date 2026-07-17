@@ -1,0 +1,15 @@
+# Test dependencies
+test/.deps/
+
+# Swap files
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
