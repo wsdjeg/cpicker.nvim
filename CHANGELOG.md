@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.0.0](https://github.com/wsdjeg/cpicker.nvim/compare/v1.1.0...v2.0.0) (2026-07-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace multiple commands with subcommands:
+    - :CpickerCursorForeground -> :Cpicker cursor
+    - :CpickerColorMix -> :Cpicker mix
+    - :CpickerCursorChangeHighlight -> :Cpicker hl
+    - :CpickerClearColorPatch -> :Cpicker clear
+
+### Bug Fixes
+
+* update release-please-action ([e5e312e](https://github.com/wsdjeg/cpicker.nvim/commit/e5e312e37f88e619f6977807a503c4c907ad039e))
+
+
+### Code Refactoring
+
+* unify all commands into single :Cpicker with subcommands ([9678ece](https://github.com/wsdjeg/cpicker.nvim/commit/9678eceeeed9a1c022f516a884b730526ddb2ef6))
+
 ## [1.1.0](https://github.com/wsdjeg/cpicker.nvim/compare/v1.0.0...v1.1.0) (2025-11-24)
 
 
