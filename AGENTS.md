@@ -55,7 +55,7 @@ Modify -> Verify -> make test -> git_add -> git_commit -> git_push -> Done
 
 ## Documentation Principles
 
-- **Verify before writing**: Only reference commands that actually exist in the codebase. Check `plugin/cpicker.lua` for user commands (`:Cpicker`, `:CpickerCursorForeground`, `:CpickerColorMix`, `:CpickerCursorChangeHighlight`, `:CpickerClearColorPatch`).
+- **Verify before writing**: Only reference commands that actually exist in the codebase. Check `plugin/cpicker.lua` for the user command (`:Cpicker` with subcommands: `cursor`, `mix`, `hl`, `clear`).
 - **No invented commands**: Do not fabricate commands or APIs. Check `lua/cpicker.lua` for the module API (`M.picker()`, `M.set_default_color()`, `M.change_cursor_highlight()`), `lua/cpicker/color.lua` for color conversion functions, and `lua/cpicker/formats/` for supported color formats.
 
 ---
@@ -202,7 +202,7 @@ cpicker.nvim/
 │   │       ├── lab.lua
 │   │       └── xyz.lua
 ├── plugin/
-│   └── cpicker.lua          # User commands: :Cpicker, :CpickerCursorForeground, etc.
+│   └── cpicker.lua          # User command: :Cpicker with subcommands (cursor, mix, hl, clear)
 ├── syntax/
 │   ├── spacevim_cpicker.vim
 │   └── spacevim_cpicker_mix.vim
@@ -243,11 +243,13 @@ cpicker.nvim/
 
 ### User Commands
 
+All functionality is through the single `:Cpicker` command with subcommands:
+
 | Command | Description |
 |---------|-------------|
 | `:Cpicker [formats...]` | Open color picker |
-| `:CpickerCursorForeground [formats...]` | Open picker with cursor foreground color |
-| `:CpickerColorMix color1 color2` | Open color mixer |
-| `:CpickerCursorChangeHighlight [formats...]` | Change cursor highlight via picker |
-| `:CpickerClearColorPatch` | Clear colorscheme patch |
+| `:Cpicker cursor [formats...]` | Open picker with cursor foreground color |
+| `:Cpicker mix color1 color2` | Open color mixer |
+| `:Cpicker hl [formats...]` | Change cursor highlight via picker |
+| `:Cpicker clear` | Clear colorscheme patch |
 

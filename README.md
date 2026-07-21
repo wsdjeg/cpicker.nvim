@@ -49,31 +49,47 @@ luarocks install cpicker.nvim
 
 ## ⚙️ Basic Usage
 
+All functionality is accessed through the single `:Cpicker` command with subcommands.
+
+| Command | Description |
+| ---------------- | ----------- |
+| `:Cpicker [formats...]` | Open color picker |
+| `:Cpicker cursor [formats...]` | Open picker with cursor foreground color |
+| `:Cpicker mix color1 color2` | Open color mixer |
+| `:Cpicker hl [formats...]` | Change cursor highlight (generates colorscheme patch) |
+| `:Cpicker clear` | Clear colorscheme patch |
+
+### Examples
+
 1. open color palette with specific color models.
 
 ```
 :Cpicker rgb hsl
 ```
 
-2. open color palette with cursor highlight
+2. open color palette with cursor highlight.
 
 ```
-:CpickerCursorForeground
+:Cpicker cursor
 ```
 
 3. open color mixer:
 
 ```
-:CpickerColorMix #282828 #23EF12
+:Cpicker mix #282828 #23EF12
 ```
 
 4. Change the highlight of cursor position. This command will generate colorscheme patch which will be loaded when using same colorscheme.
 
 ```
-:CpickerCursorChangeHighlight
+:Cpicker hl
 ```
 
-Use `:CpickerClearColorPatch` command to clear colorscheme patch
+Use `:Cpicker clear` to clear colorscheme patch.
+
+### Supported color formats
+
+`rgb`, `hsl`, `hsv`, `cmyk`, `hwb`, `linear`, `lab`
 
 ## 🪟 Key binding
 
